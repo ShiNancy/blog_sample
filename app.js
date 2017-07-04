@@ -12,9 +12,11 @@ app.set('view engine','ejs');
 //模版页面的存放路径
 app.set('views','./views')
 
-app.get('/',(req,res)=>{
- res.render('index');
-})
+// app.get('/',(req,res)=>{
+//  res.render('index');
+// })
+var indexRouter=require('./router/indexRouter.js');
+app.use(indexRouter);
 
 app.listen(3005,function (){
     console.log('Express server running at http://127.0.0.1:3005');
