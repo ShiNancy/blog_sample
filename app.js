@@ -15,11 +15,20 @@ app.set('views','./views');
 // app.get('/',(req,res)=>{
 //  res.render('index');
 // })
-var indexRouter=require('./router/indexRouter.js');
-app.use(indexRouter);
+// var indexRouter=require('./router/indexRouter.js');
+// app.use(indexRouter);
 
-var userRouter=require('./router/userRouter');
-app.use(userRouter);
+// var userRouter=require('./router/userRouter');
+// app.use(userRouter);
+//fs.readdir方法，读取/routr
+fs.readdir(path.join(__dirname,'./router'),(err,filenames)=>{
+    if(err) throw err;
+    filenames.forEach(filename=>{
+        var routerPath=path.join(__dirname,'./router',filename);
+        var routerModule=require(routerPath);
+        app.use(routerModule);
+    });
+})
 
 app.listen(3005,function (){
     console.log('Express server running at http://127.0.0.1:3005');
