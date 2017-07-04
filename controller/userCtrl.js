@@ -1,4 +1,5 @@
 
+var UserModel=require('../model/userModel.js');
 
 module.exports={
     getRegisterPage(req,res){
